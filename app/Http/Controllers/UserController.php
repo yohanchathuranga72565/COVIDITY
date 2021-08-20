@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
+use App\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -69,4 +70,5 @@ class UserController extends Controller
         return redirect()->back()->with('success','Profile Updated.');
         // return $user;
     }
+
 }

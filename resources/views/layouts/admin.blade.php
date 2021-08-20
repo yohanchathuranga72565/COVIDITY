@@ -59,7 +59,7 @@
           <a href="{{ route('home') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link">Contact</a>
+          <a href="{{ route('contact.create') }}" class="nav-link">Contact</a>
         </li>
       </ul>
 
@@ -195,6 +195,12 @@
                         </a>
                       </li>
                     </ul>
+                  </li>
+                  <li class='nav-item'>
+                    <a href="{{ route('contact.index') }}" class="nav-link">
+                      <i class="nav-icon far fa-address-card"></i>
+                      <p>Contact Messages</p>
+                    </a>
                   </li>
                 @endif
 

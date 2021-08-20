@@ -22,6 +22,7 @@
         <link rel="stylesheet" href="{{ asset("user/css/footer.css") }}" />
         <link rel="stylesheet" href="{{ asset('user/fonts/icomoon/style.css') }}" />
         <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+        @yield('csslink')
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -31,6 +32,9 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse " id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('contact.create') }}">{{ __('Contact') }}</a>
+                            </li>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -69,6 +73,7 @@
                                     </form>
                                 </div>
                             </li>
+
                             
                         @endguest
                         {{-- <li class="nav-item"><a class="nav-link" href="{{ route("register") }}">Register</a></li>
@@ -135,6 +140,7 @@
 
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        @yield('jslink')
 
         {{-- jquery ui --}}
 

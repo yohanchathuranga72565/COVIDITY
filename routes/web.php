@@ -37,6 +37,10 @@ Route::get('/usersRegister','UserController@register')->name('users.register');
 Route::post('/userRegisterCreate','UserController@registerCreate')->name('users.registerCreate');
 Route::get('/viewUserProfile/{id}','UserController@viewProfile')->name('users.viewProfile');
 Route::post('/editUserProfile/{id}','UserController@editProfile')->name('users.profileUpdate');
+Route::get('/contactUs','UserController@showContactUs')->name('users.contactUs');
+Route::post('/createContact','UserController@createContact')->name('users.createContact');
+
+Route::resource('/contact', 'ContactController');
 
 Auth::routes();
 
