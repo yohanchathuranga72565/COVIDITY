@@ -74,8 +74,6 @@
                                                     <p class="card-text"><input type="text" class="form-control" value="{{ $contact->phone_number }}" readonly></p>
                                                     <h5 class="card-title my-2">Message</h5>
                                                     <p class="card-text"><textarea class="form-control" rows="8" readonly>{{ $contact->message }}</textarea></p>
-                                                    
-                        
                                                     </div>
                                                 </div>
                                             </div>

@@ -42,6 +42,10 @@ Route::post('/createContact','UserController@createContact')->name('users.create
 
 Route::resource('/contact', 'ContactController');
 
+Route::resource('/healthTips', 'HealthTipController');
+
+Route::resource('/about', 'AboutController');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('welcome');
