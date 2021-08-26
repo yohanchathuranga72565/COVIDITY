@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.home');
-})->name('home');
+// Route::get('/', function () {
+//     return view('user.home');
+// })->name('home');
+
+Route::get('/','HomeController@index')->name('home.index');
 
 
 Route::get('/admin','AdminController@index')->name('admin.index');
@@ -48,6 +52,9 @@ Route::get('/showAllHealthTips','HealthTipController@showAll')->name('showAllHea
 Route::resource('/about', 'AboutController');
 
 Route::resource('/news', 'NewsController');
+Route::get('/showAllNews','NewsController@showAll')->name('showAllNews');
+
+Route::get('/comment','CommentController@index')->name('chatSystem');
 
 
 

@@ -22,25 +22,33 @@
         <link rel="stylesheet" href="{{ asset("user/css/footer.css") }}" />
         <link rel="stylesheet" href="{{ asset('user/fonts/icomoon/style.css') }}" />
         <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+        @livewireStyles
         @yield('csslink')
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container px-5">
-                <a class="navbar-brand" href="{{ route('home') }}"><i class="fas fa-head-side-mask"></i> COVIDITY</a>
+                <a class="navbar-brand" href="{{ route('home.index') }}"><i class="fas fa-head-side-mask"></i> COVIDITY</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse " id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                              <a class="nav-link" href="{{ route('home.index') }}">{{ __('Home') }}</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('about.index') }}">{{ __('About') }}</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('news.index') }}">{{ __('News') }}</a>
                             </li>
+                            @guest
+                            @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('healthTips.index') }}">{{ __('Health Tips') }}</a>
-                            </li>
+                            </li>  
+                             @endguest 
+                     
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('contact.create') }}">{{ __('Contact') }}</a>
                             </li>
@@ -60,15 +68,16 @@
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                  @if (Auth::user()->hasRole('user'))
-                                    <a class="dropdown-item" href="{{ route('users.index') }}">
-                                  @elseif (Auth::user()->hasRole('phi'))
+
+                                  @if (Auth::user()->hasRole('phi'))
                                     <a class="dropdown-item" href="{{ route('phi.index') }}">
+                                      {{ __('Dashboard') }}
                                   @elseif (Auth::user()->hasRole('admin'))
                                     <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                      {{ __('Dashboard') }}
                                   @endif
                                     
-                                        {{ __('Dashboard') }}
+                                        
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
@@ -82,6 +91,7 @@
                                     </form>
                                 </div>
                             </li>
+                            
 
                             
                         @endguest
@@ -103,16 +113,13 @@
               <div class="row justify-content-center">
                 <div class="col-md-9 text-center">
                   <div class="footer-site-logo mb-4">
-                    <a href="#">Colorlib</a>
+                    <a href="#">Covidity</a>
                   </div>
                   <ul class="list-unstyled nav-links mb-5">
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Legal</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ route('home.index') }}">Home</a></li>
+                    <li><a href="{{ route('about.index') }}">About</a></li>
+                    <li><a href="{{ route('contact.index') }}">Contact</a></li>
+                    <li><a href="{{ route('news.index') }}">News</a></li>
                   </ul>
       
                   <div class="social mb-4">
@@ -127,7 +134,7 @@
                   </div>
       
                   <div class="copyright">
-                    <p class="mb-0"><small>&copy; Colorlib. All Rights Reserved.</small></p>
+                    <p class="mb-0"><small>&copy; Covidity. All Rights Reserved.</small></p>
                   </div>
       
       
@@ -165,6 +172,7 @@
             });
           } );
         </script>
+        @livewireScripts
         
     </body>
 </html>

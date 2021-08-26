@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
+use App\HealthTips;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,10 +13,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+   
 
     /**
      * Show the application dashboard.
@@ -22,7 +21,11 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        return view('user.welcome');
+    {   
+        $news = News::latest()->paginate(4);
+        $latestNews = News::latest()->take(5)->get();
+        $latestOne = News::latest()->take(1)->get()->first();
+        $healthTips = HealthTips::all();
+        return view('user.home')->with(['news'=>$news,'latestNews'=>$latestNews,'latestOne'=>$latestOne,'healthTips'=>$healthTips]);
     }
 }

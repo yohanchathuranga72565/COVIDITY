@@ -56,7 +56,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{{ route('home') }}" class="nav-link">Home</a>
+          <a href="{{ route('home.index') }}" class="nav-link">Home</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="{{ route('contact.create') }}" class="nav-link">Contact</a>
@@ -112,7 +112,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
-    <a href="{{route('home')}}" class="brand-link ml-3">
+    <a href="{{route('home.index')}}" class="brand-link ml-3">
         <i class="fas fa-head-side-mask"></i>
         <span class="brand-text font-weight-light">COVIDITY</span>
       </a>
@@ -205,13 +205,13 @@
                 @endif
 
                   <li class='nav-item'>
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('chatSystem') }}" class="nav-link">
                       <i class="nav-icon fa fa-comment" aria-hidden="true"></i>
                       <p>Comment Section</p>
                     </a>
                   </li>
                   <li class='nav-item'>
-                    <a href="{{ route('news.create') }}" class="nav-link">
+                    <a href="{{ route('showAllNews') }}" class="nav-link">
                         <i class="fas fa-newspaper m-1"></i>
                         <p class = "m-1"> News</p>
                     </a>

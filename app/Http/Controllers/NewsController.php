@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\HealthTips;
 use App\News;
+use App\HealthTips;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
 {
@@ -17,7 +18,8 @@ class NewsController extends Controller
     {
         $news = News::latest()->paginate(4);
         $latestNews = News::latest()->take(3)->get();
-        return view('news.news')->with(['news'=>$news,'latestNews'=>$latestNews]);
+        $latestOne = News::latest()->take(1)->get();
+        return view('news.news')->with(['news'=>$news,'latestNews'=>$latestNews,'latestOne'=>$latestOne]);
     }
 
     /**
@@ -81,7 +83,8 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $news = News::where('id',$id)->get();
+        return view('news.editNews')->with(['news'=>$news[0]]);
     }
 
     /**
@@ -93,7 +96,29 @@ class NewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $filename='';
+        // $file_extension='';
+
+        $request->validate([
+            'heading'  => ['required','max:255'],
+            'description'  => ['required'],
+            'image' => ['image'],
+        ]);
+
+
+        $news = News::where('id',$id)->first();
+        if($request->image){ 
+            Storage::delete('/public/news/'.$news->image);
+            $filename = auth()->user()->id.'-'.$request->image->getClientOriginalname();
+            $request->image->storeAs('public/news',$filename);
+        }
+        else{
+            $filename = $news->image;
+        }
+
+        $news = News::where('id',$id)->update(['user_id'=>auth()->user()->id,'heading'=>$request->heading, 'description'=> $request->description, 'image'=> $filename]);
+        $filename='';
+        return redirect()->route('showAllNews');
     }
 
     /**
@@ -104,6 +129,16 @@ class NewsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $news = News::where('id',$id)->first();
+        Storage::delete('/public/news/'.$news->image);
+        $news->delete();
+
+        return redirect()->back()->with('success','Data Deleted.');
     }
+
+    public function showAll(){
+        $news = News::paginate(10);
+        return view('news.showAllNews')->with(['news'=>$news]);
+    }
+
 }

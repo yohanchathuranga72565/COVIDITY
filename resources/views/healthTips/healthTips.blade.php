@@ -15,6 +15,14 @@
     
                 </div>
             </div>
+            <div class="row justify-content-center py-3">
+                <div class="col-12 col-md-5">
+                    @livewire('questions')
+                </div>
+                <div class="col-12 col-md-5">
+                    @livewire('comments')
+                </div>  
+            </div>
             <!-- Call to Action-->
             <div class="card text-white bg-dark my-5 py-4 text-center">
                 <div class="card-body">
@@ -40,4 +48,9 @@
                     {{ $healthTips->links() }}
             </div>
         </div>
+        <div class="container my-5 px-2 px-lg-8">
+            
+        </div>
+        
+        
 @endsection
