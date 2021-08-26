@@ -43,8 +43,13 @@ Route::post('/createContact','UserController@createContact')->name('users.create
 Route::resource('/contact', 'ContactController');
 
 Route::resource('/healthTips', 'HealthTipController');
+Route::get('/showAllHealthTips','HealthTipController@showAll')->name('showAllHealthTips');
 
 Route::resource('/about', 'AboutController');
+
+Route::resource('/news', 'NewsController');
+
+
 
 Auth::routes();
 

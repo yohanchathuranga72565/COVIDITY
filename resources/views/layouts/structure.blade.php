@@ -36,6 +36,9 @@
                                 <a class="nav-link" href="{{ route('about.index') }}">{{ __('About') }}</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="{{ route('news.index') }}">{{ __('News') }}</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="{{ route('healthTips.index') }}">{{ __('Health Tips') }}</a>
                             </li>
                             <li class="nav-item">

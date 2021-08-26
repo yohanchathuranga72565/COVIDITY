@@ -211,14 +211,14 @@
                     </a>
                   </li>
                   <li class='nav-item'>
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('news.create') }}" class="nav-link">
                         <i class="fas fa-newspaper m-1"></i>
                         <p class = "m-1"> News</p>
                     </a>
                   </li>
 
                   <li class='nav-item'>
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('showAllHealthTips') }}" class="nav-link">
                         <i class="fas fa-stethoscope m-1"></i>
                         <p class = "m-1">Helth Tips</p>
                     </a>

@@ -19,7 +19,7 @@ class CreateHealthTipsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('image')->nullable();
             $table->string('heading');
-            $table->string('description');
+            $table->longText('description');
             $table->timestamps();
         });
     }

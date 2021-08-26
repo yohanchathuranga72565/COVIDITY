@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class HealthTips extends Model
+class News extends Model
 {
     protected $guarded = [];
     public function user()

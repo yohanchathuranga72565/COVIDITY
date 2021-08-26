@@ -88,9 +88,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                        {{-- <input type="text" id="name" name="name" class="contact_form_name input_field" placeholder="Your name" required="required" data-error="Name is required."> 
-                                        <input type="email" id="email" name="email" class="contact_form_email input_field" placeholder="Your email" required="required" data-error="Email is required.">
-                                        <input type="text" id="pno" name="pno" class="contact_form_phone input_field" placeholder="Your phone number"> --}}
+                                
                                     </div>
                                     <div class="contact_form_text m-1">
                                         <textarea class="form-control @error('message') is-invalid @enderror" id="message" name="message" rows="4"></textarea>
@@ -113,16 +111,17 @@
                                 <img class="card-img-top" src="{{ asset('user/assets/img/sanitizing.jpg') }}" alt="Card image cap">
                                 <div class="card-body">
                                     <h5 class="card-title">Health Tips</h5>
-                                    <p class="card-text">Tips to protect you and your family.</p>
+                                    <p class="card-text"><b>Tips to protect you and your family.</b></p>
                                 </div>
                                 <ul class="list-group list-group-flush">
-                                    <li class="list-group-item">Wear a Mask.</li>
-                                    <li class="list-group-item">Wash your hands often.</li>
-                                    <li class="list-group-item">Maintain distance with others.</li>
+                                    @foreach ($healthTips as $healthTip)
+                                        <li class="list-group-item">{{ $healthTip->heading }}</li>
+                                    @endforeach
+                                    
                                 </ul>
                                 <div class="card-body">
-                                    <a href="#" class="card-link">More</a>
-                                    <a href="#" class="card-link">Top News</a>
+                                    <a href="{{ route('healthTips.index') }}" class="card-link">More</a>
+                                    <a href="{{ route('news.index') }}" class="card-link">Top News</a>
                                 </div>
                             </div>
                         </div>

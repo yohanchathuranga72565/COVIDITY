@@ -2,28 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
 use App\HealthTips;
+use App\News;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('role:admin|phi',['only' => ['index']]);
-        $this->middleware('role:admin',['only' => ['destroy']]);
-    }
-
-
     public function index()
     {
-       $contacts = Contact::paginate(10);
-       return view('contact.showAllContact')->with(['contacts'=>$contacts]);
+        $news = News::latest()->paginate(4);
+        $latestNews = News::latest()->take(3)->get();
+        return view('news.news')->with(['news'=>$news,'latestNews'=>$latestNews]);
     }
 
     /**
@@ -33,8 +27,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        $healthTips = HealthTips::latest()->take(3)->get();
-        return view('contact.contactUs')->with(['healthTips'=>$healthTips]);
+        return view('news.addNews');
     }
 
     /**
@@ -43,21 +36,28 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $data)
+    public function store(Request $request)
     {
-        $data->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'email'],
-            'message' => ['required', 'string'],
-            'pno' => ['regex:/^(?:0|94|\+94)?(?:(?P<area>11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(?P<land_carrier>0|2|3|4|5|7|9)|7(?P<mobile_carrier>0|1|2|4|5|6|7|8)\d)\d{6}$/']
+        $filename='';
+        // $file_extension='';
+
+        $request->validate([
+            'heading'  => ['required','max:255'],
+            'description'  => ['required'],
+            'image' => ['required','image'],
         ]);
-        $user = Contact::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone_number' => $data['pno'],
-            'message' => $data['message']   
-        ]);
-        return redirect()->back()->with('success','Your message has been added.');
+
+
+
+        if($request->image){
+            $filename = auth()->user()->id.'-'.$request->image->getClientOriginalname();
+            $request->image->storeAs('public/news',$filename);
+        }
+
+        $news = News::create(['user_id'=>auth()->user()->id,'heading'=>$request->heading, 'description'=> $request->description, 'image'=> $filename]);
+        $filename='';
+        return redirect()->back()->with('success','Added new news.');
+
     }
 
     /**
@@ -68,7 +68,9 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $latestNews = News::latest()->take(3)->get();
+        $news = News::where('id',$id)->get()->first();
+        return view('news.oneNews')->with(['news'=>$news,'latestNews'=>$latestNews]);
     }
 
     /**
@@ -102,8 +104,6 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Contact::find($id);
-        $contact->delete();
-        return redirect()->back()->with('success','Deleted Message.');
+        //
     }
 }
