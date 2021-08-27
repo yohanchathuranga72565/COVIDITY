@@ -129,9 +129,7 @@
                                     <h4><a href="{{ route('news.show',$item->id) }}">{{ $item->heading }}</a></h4>
                                 </div>
                             </div>
-                        @endforeach
-                        
-                       
+                        @endforeach     
                         </div>
                     </div>
                 </div>
@@ -155,18 +153,15 @@
                             <div class="weekly2-news-active dot-style d-flex dot-style">
                                 @foreach ($healthTips as $item)
                                     <div class="weekly2-single">
-                                        <div class="weekly2-img">
-                                            <div class="card" style="width: 18rem;">
+                                        <div class="weekly2-img">                      
                                                 <img src="{{ asset('storage/healthTips/'.$item->image) }}" alt=""/>
-                                            </div>
                                         </div>
                                         <div class="weekly2-caption">
                                             <span class="color1">{{ $item->created_at }}</span>
                                             <h4><a href="{{ route('healthTips.index') }}">{{ $item->heading }}</a></h4>
                                         </div>
                                     </div> 
-                                @endforeach
-                                
+                                @endforeach                         
                             </div>
                         </div>
                     </div>
@@ -196,9 +191,8 @@
                             @foreach ($news as $item)
                                 <div class="single-recent mb-100">
                                     <div class="what-img">
-                                        <div class="card" style="width: 18rem;">
                                             <img src="{{ asset('storage/news/'.$item->image) }}" alt="">
-                                        </div>
+                                    
                                     </div>
                                     <div class="what-cap">
                                         <span class="color1">{{ $item->created_at }}</span>
