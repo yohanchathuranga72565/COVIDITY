@@ -30,6 +30,7 @@
                   <div class="card-body">
                     <h2>Recent news</h2>
                     @foreach ($latestNews as $item)
+                    <a href="{{ route('news.show',$item->id) }}">
                         <div class="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between" >
                         <div class="pr-3">
                             <h5>{{ $item->heading }}</h5>
@@ -41,6 +42,7 @@
                             <img src="{{asset('storage/news/'.$item->image)}}" alt="thumb" class="img-fluid img-lg"/>
                         </div>
                         </div>
+                    </a>
                     @endforeach
                   </div>
                 </div>

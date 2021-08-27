@@ -114,6 +114,9 @@
                     </div>
                     <!-- Riht content -->
                     <div class="col-lg-4">
+                        <div class="row mb-3">
+                            <span class="color1">Recently Added</span>
+                        </div>
                         @foreach ($latestNews as $item)
                             <div class=" row trand-right-single d-flex">
                                 <div class="col-4 trand-right-img">
@@ -153,7 +156,9 @@
                                 @foreach ($healthTips as $item)
                                     <div class="weekly2-single">
                                         <div class="weekly2-img">
-                                            <img src="{{ asset('storage/healthTips/'.$item->image) }}" alt=""/>
+                                            <div class="card" style="width: 18rem;">
+                                                <img src="{{ asset('storage/healthTips/'.$item->image) }}" alt=""/>
+                                            </div>
                                         </div>
                                         <div class="weekly2-caption">
                                             <span class="color1">{{ $item->created_at }}</span>
@@ -191,7 +196,9 @@
                             @foreach ($news as $item)
                                 <div class="single-recent mb-100">
                                     <div class="what-img">
-                                        <img src="{{ asset('storage/news/'.$item->image) }}" alt="">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="{{ asset('storage/news/'.$item->image) }}" alt="">
+                                        </div>
                                     </div>
                                     <div class="what-cap">
                                         <span class="color1">{{ $item->created_at }}</span>
