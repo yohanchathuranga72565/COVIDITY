@@ -71,7 +71,7 @@ class PHIController extends Controller
     }
 
     public function showAllUsers(){
-        $users = User::paginate(10);
+        $users = User::paginate(20);
         return view('user.showUserProfiles')->with(['users'=>$users]);
     }
 
