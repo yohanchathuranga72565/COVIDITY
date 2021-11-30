@@ -96,19 +96,21 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <!-- Trending Top -->
-                        <div class="trending-top mb-30">
-                            <div class="trend-top-img">
-                                <img src="{{asset('storage/news/'.$latestOne->image)}}" alt="">
-                                <div class="trend-top-cap">
+                        @if ($latestOne)
+                            <div class="trending-top mb-30">
+                                <div class="trend-top-img">
+                                    <img src="{{asset('storage/news/'.$latestOne->image)}}" alt="">
+                                    <div class="trend-top-cap">
+                                        
+                                        <h2><a href="details.html">{{ $latestOne->heading }}.</a></h2>
+                                    </div>
                                     
-                                    <h2><a href="details.html">{{ $latestOne->heading }}.</a></h2>
                                 </div>
-                                
+                                <p class="text-justify">
+                                    {{ $latestOne->description }}
+                                </p>
                             </div>
-                            <p class="text-justify">
-                                {{ $latestOne->description }}
-                            </p>
-                        </div>
+                        @endif
                         <!-- Trending Bottom -->
                         
                     </div>
